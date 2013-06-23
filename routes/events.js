@@ -12,8 +12,7 @@ db.open(function(err, db) {
         console.log("Connected to 'events' database");
         db.collection('events', {strict:true}, function(err, collection) {
             if (err) {
-                console.log("The 'events' collection doesn't exist. Creating it with sample data...");
-                populateDB();
+                console.log("The 'events' collection doesn't exist.");
             }
         });
     }
@@ -102,30 +101,4 @@ exports.deleteEvent = function(req, res) {
     });
 }
  
-var populateDB = function() {
  
-    var events = [
-    {
-        name: "CHATEAU DE SAINT COSME",
-        year: "2009",
-        grapes: "Grenache / Syrah",
-        country: "France",
-        region: "Southern Rhone",
-        description: "The aromas of fruit and spice...",
-        picture: "saint_cosme.jpg"
-    },
-    {
-        name: "LAN RIOJA CRIANZA",
-        year: "2006",
-        grapes: "Tempranillo",
-        country: "Spain",
-        region: "Rioja",
-        description: "A resurgence of interest in boutique vineyards...",
-        picture: "lan_rioja.jpg"
-    }];
- 
-    db.collection('events', function(err, collection) {
-        collection.insert(events, {safe:true}, function(err, result) {});
-    });
- 
-};
