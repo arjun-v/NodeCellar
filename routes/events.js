@@ -51,20 +51,18 @@ exports.addEvent = function(req, res) {
     });
 }
 
-exports.addEvents = function(req, res) {
-    var events = req.body;
-    console.log('Adding events: ' + JSON.stringify(events));
+
+exports.getEventsByLocation = function(req, res) {
+    var location = req.params.location;
+    var number = parseInt(req.params.number);
+    console.log('Retrieving event: ' + location);
     db.collection('events', function(err, collection) {
-        collection.insert(events, {safe:true}, function(err, result) {
-	    if (err) {
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('Success: ' + JSON.stringify(result[0]));
-                res.send(result[0]);
-            }
+        collection.find({'location': location}).limit(number).toArray(function(err, item) {
+            res.send(item);
         });
     });
-}
+
+};
 
 
  

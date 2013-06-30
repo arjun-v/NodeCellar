@@ -11,7 +11,7 @@ app.configure(function () {
 app.get('/events', event.findAll);
 app.get('/events/:id', event.findById);
 app.post('/events/add', event.addEvent);
-app.post('/events/addMany', event.addEvents);
+app.get('/events/getEventsByLocation/:location/:number', event.getEventsByLocation);
 app.put('/events/:id', event.updateEvent);
 app.delete('/events/:id', event.deleteEvent);
  
