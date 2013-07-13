@@ -15,5 +15,5 @@ app.get('/events/getEventsByLocation/:location/:number', event.getEventsByLocati
 app.put('/events/:id', event.updateEvent);
 app.delete('/events/:id', event.deleteEvent);
  
-app.listen(3000);
-console.log('Listening on port 3000...');
+app.listen(8080);
+console.log('Listening on port 8080...');
