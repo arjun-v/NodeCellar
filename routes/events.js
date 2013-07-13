@@ -54,10 +54,11 @@ exports.addEvent = function(req, res) {
 
 exports.getEventsByLocation = function(req, res) {
     var location = req.params.location;
+    var ts = parseInt(Date.now()/1000);
     var number = parseInt(req.params.number);
     console.log('Retrieving event: ' + location);
     db.collection('events', function(err, collection) {
-        collection.find({'location': location}).limit(number).toArray(function(err, item) {
+        collection.find({'location': location,'timestamp':{$gt:ts}}).limit(number).sort({'timestamp': 1 }).toArray(function(err, item) {
             res.send(item);
         });
     });
